@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculator</title>
+<script>
+function performCalculation(operation) {
+    var op1 = document.getElementById('operand1').value;
+    var op2 = document.getElementById('operand2').value;
+    var url = `http://localhost:8080/calculator/${operation}/${op1}/${op2}`;
+    
+    fetch(url)
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.text();
+    })
+    .then(data => document.getElementById('result').innerText = data)
+    .catch(error => document.getElementById('result').innerText = error);
+}
+
+</script>
+</head>
+<body>
+
+<h1>Calculator</h1>
+
+<div>
+    <input type="number" id="operand1" required>
+    <input type="number" id="operand2" required>
+</div>
+
+<div>
+    <button onclick="performCalculation('sum')">Sum</button>
+    <button onclick="performCalculation('subtract')">Subtract</button>
+    <button onclick="performCalculation('multiply')">Multiply</button>
+    <button onclick="performCalculation('divide')">Divide</button>
+</div>
+
+<div>
+    <p>Result: <span id="result">?</span></p>
+</div>
+
+</body>
+</html>
