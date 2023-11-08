@@ -37,7 +37,7 @@ public class GreetingsController {
     }
 
     // New end points
-    @GetMapping("/person/{id}")
+    @GetMapping("person/{id}")
     Person getPerson(@PathVariable long id) {
         return greetingsService.getPerson(id);
     }
