@@ -27,7 +27,7 @@ public class GreetingsController {
 		log.debug("method: addPerson, received {}", person);
 		return greetingsService.addPerson(person);
 	}
-	@PutMapping
+	@PutMappin
 	Person updatePerson(@RequestBody @Valid Person person) {
 		log.debug("method: updatePerson, received {}", person);
 		return greetingsService.updatePerson(person);
